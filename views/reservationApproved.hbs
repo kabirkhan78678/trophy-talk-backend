@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Investment Approved - Wire Transfer Instructions</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+      color: #ffffff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .content {
+      padding: 35px 30px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .content h2 {
+      color: #0072ff;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .summary-box {
+      background: #f1f8ff;
+      border: 1px solid #d8e9ff;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 25px 0;
+    }
+    .summary-box h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      color: #0072ff;
+    }
+    .summary-box ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+    .summary-box li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .escrow-box {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 25px 0;
+    }
+    .escrow-box h3 {
+      margin-top: 0;
+      color: #e09c00;
+      font-size: 17px;
+    }
+    .escrow-details {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid #e0e0e0;
+    }
+    .escrow-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .escrow-label {
+      font-weight: 600;
+      color: #555;
+      min-width: 140px;
+    }
+    .escrow-value {
+      color: #333;
+      font-weight: 500;
+    }
+    .reference-id {
+      background: #fff3cd;
+      border: 2px dashed #ffc107;
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+      margin: 15px 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #856404;
+    }
+    .important-note {
+      background: #ffeaa7;
+      border-left: 4px solid #fdcb6e;
+      padding: 12px 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      padding: 20px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Investment Approved! 🎉</h1>
+    </div>
+
+    <div class="content">
+      <p>Hi <strong>{{name}}</strong>,</p>
+      <p>Your investment in <strong>{{ranchName}}</strong> has been approved! Your 1% deposit has been confirmed.</p>
+
+      <h2>Complete Your Investment</h2>
+      <p>To secure your shares, please wire the remaining balance to our secure Escrow account:</p>
+
+      <div class="summary-box">
+        <h3>Payment Summary</h3>
+        <ul>
+          <li><strong>Total Investment:</strong> ${{totalAmount}}</li>
+          <li><strong>1% Deposit Paid:</strong> ${{depositAmount}}</li>
+          <li><strong>Remaining Balance Due:</strong> 
+            <span style="color:#0072ff;font-weight:bold;">${{balanceAmount}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="escrow-box">
+        <h3>🔒 Secure Wire Transfer Instructions</h3>
+        <p>Please transfer the remaining amount using the following bank details:</p>
+        
+        <div class="escrow-details">
+          <div class="escrow-row">
+            <span class="escrow-label">Bank Name:</span>
+            <span class="escrow-value">{{escrowBank}}</span>
+          </div>
+          <div class="escrow-row">
+            <span class="escrow-label">Account Holder:</span>
+            <span class="escrow-value">Escrow.com Trust Account</span>
+          </div>
+          <div class="escrow-row">
+            <span class="escrow-label">Account Number:</span>
+            <span class="escrow-value">{{escrowAccount}}</span>
+          </div>
+          <div class="escrow-row">
+            <span class="escrow-label">Routing Number:</span>
+            <span class="escrow-value">{{escrowRouting}}</span>
+          </div>
+          <div class="escrow-row">
+            <span class="escrow-label">Amount to Transfer:</span>
+            <span class="escrow-value" style="color:#0072ff;font-weight:bold;">${{balanceAmount}}</span>
+          </div>
+        </div>
+
+        <div class="reference-id">
+          🎯 REFERENCE ID: {{referenceId}}
+        </div>
+
+        <div class="important-note">
+          <strong>⚠️ IMPORTANT:</strong> You MUST include the Reference ID in the wire transfer description/memo. 
+          Without it, we cannot match your payment to your investment.
+        </div>
+
+        <p><strong>Transfer Timeline:</strong> 1-2 business days</p>
+        <p><strong>Due Date:</strong> Within 7 days of approval</p>
+      </div>
+
+      <h3>After You Wire the Funds</h3>
+      <p>Once Escrow receives your payment, we'll automatically notify you and complete your share transfer. Your investment will be protected until all conditions are met.</p>
+
+      <p style="margin-top:25px;">Thank you for choosing secure investing with us!</p>
+      <p>— The Ranch Investment Team</p>
+
+      <div style="text-align:center; margin-top:30px;">
+        <p><strong>Need Help?</strong></p>
+        <p>Contact our support team if you have any questions about the wire transfer process.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; {{year}} Ranch Investments Inc. All rights reserved.</p>
+      <p>This is an automated email — please do not reply.</p>
+      <p>Your investment is secured through Escrow.com</p>
+    </div>
+  </div>
+</body>
+</html>

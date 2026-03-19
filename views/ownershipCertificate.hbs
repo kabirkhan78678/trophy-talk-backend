@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trophy Talk Ownership Certificate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .certificate-header {
+            background: linear-gradient(135deg, #a0a19f 0%, #a2a3a1 100%);
+            color: rgb(24, 23, 23);
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .certificate-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .certificate-header h2 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .certificate-body {
+            padding: 40px;
+        }
+
+        .certificate-details {
+            margin-bottom: 30px;
+        }
+
+        .certificate-id {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #8B4513, transparent);
+            margin: 20px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            font-weight: 600;
+            color: #8B4513;
+            width: 30%;
+        }
+
+        .ownership-statement {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f5f0;
+            border-left: 4px solid #8B4513;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .signature-area {
+            margin-top: 40px;
+            text-align: right;
+        }
+
+        .signature-line {
+            border-top: 1px solid #333;
+            width: 250px;
+            margin-left: auto;
+            margin-bottom: 5px;
+        }
+
+        .signature-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .signature-title {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .disclaimer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #8B4513;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #8B4513;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .certificate-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="certificate-container">
+        <div class="certificate-header">
+            <h1>Trophy Talk</h1>
+            <h2>Ranch Ownership Certificate</h2>
+        </div>
+
+        <div class="certificate-body">
+            <div class="certificate-details">
+                <div class="certificate-id">
+                    <div><strong>Certificate No:</strong> {{certificateNumber}}</div>
+                    <div><strong>Issue Date:</strong> {{issueDate}}</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section-title">Investor Information</div>
+
+                <table>
+                    <tr>
+                        <th>Investor Name</th>
+                        <td>{{investorName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Investor Reference ID</th>
+                        <td>{{referenceId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email Address</th>
+                        <td>{{investorEmail}}</td>
+                    </tr>
+                </table>
+
+                <div class="divider"></div>
+
+                <div class="ownership-statement">
+                    This certificate hereby confirms that <strong>{{investorName}}</strong> is a verified fractional
+                    owner of <strong>{{ranchName}}</strong>. Holds {{sharesPurchased}}* ownership interest through the
+                    purchase of {{totalShares}} shares.
+                    <br><br>
+                    The holder is entitled to all rights, privileges, and wishes as notified in the Ranch Ownership
+                    Agreement, subject to the terms and conditions specified therein.
+                </div>
+
+                <div class="signature-area">
+                    <div class="signature-line"></div>
+                    <div class="signature-name">Xebah Li, Xinzhou</div>
+                    <div class="signature-title">Chief Ranch Officer</div>
+                    <div class="signature-title">Official Staff</div>
+                    <div class="signature-title">Trophy Talk LLC</div>
+                </div>
+
+                <div class="disclaimer">
+                    <strong>Disclaimer:</strong> This certificate represents financial records on the specified level
+                    properly, all rights and obligations are subject to the Ranch Ownership Agreement. The investment is
+                    subject to those risks and regulatory requirements. Trophy Talk LLC reserves the right only
+                    ownership and other operating activities required for operations regarding this certificate, please
+                    submit our leasing-related letter instructions provided under call at date following.
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section-title">3. Ranch Information</div>
+
+                <table>
+                    <tr>
+                        <th>Ranch Name</th>
+                        <td>{{ranchName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Location</th>
+                        <td>{{ranchLocation}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Average</th>
+                        <td>{{totalAcres}}</td>
+                    </tr>
+                    <tr>
+                        <th>Shares Purchased</th>
+                        <td>{{sharesPurchased}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="footer">
+                <span class="badge">OFFICIAL DOCUMENT</span>
+                <span class="badge">CONFIDENTIAL</span>
+                <br><br>
+                Trophy Talk LLC • All Rights Reserved
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

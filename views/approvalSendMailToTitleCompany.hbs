@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fund Release Approval</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .header .badge {
+            background: #10b981;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .alert-box h3 {
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        
+        .transaction-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #6c757d;
+        }
+        
+        .detail-value {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .amount-highlight {
+            font-size: 28px;
+            font-weight: bold;
+            color: #059669;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+        }
+        
+        .action-section {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .action-section h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .steps li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .steps li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .contact-info {
+            background: #e7f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .urgency-banner {
+            background: #dc2626;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>FUND RELEASE APPROVAL</h1>
+            <p>Investment Successfully Verified & Approved</p>
+            <div class="badge">ACTION REQUIRED</div>
+        </div>
+        
+        <!-- Urgency Banner -->
+        <div class="urgency-banner">
+            ⚡ PLEASE PROCESS WITHIN 24 HOURS
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <div class="alert-box">
+                <h3>🚀 Ready for Fund Disbursement</h3>
+                <p>All verification checks passed successfully. Please proceed with fund release.</p>
+            </div>
+            
+            <!-- Amount Highlight -->
+            <div class="amount-highlight">
+                {{amount}}
+            </div>
+            
+            <!-- Transaction Details -->
+            <div class="transaction-details">
+                <h3 style="text-align: center; margin-bottom: 20px; color: #374151;">Transaction Details</h3>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Investor Name:</span>
+                    <span class="detail-value">{{investorName}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Investor Email:</span>
+                    <span class="detail-value">{{investorEmail}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Ranch Property:</span>
+                    <span class="detail-value">{{ranchName}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Purchase ID:</span>
+                    <span class="detail-value">#{{purchaseId}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Escrow Reference:</span>
+                    <span class="detail-value">{{referenceId}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Approval Date:</span>
+                    <span class="detail-value">{{date}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Approval Time:</span>
+                    <span class="detail-value">{{time}}</span>
+                </div>
+            </div>
+            
+            <!-- Action Required Section -->
+            <div class="action-section">
+                <h3>📋 Required Action</h3>
+                <p><strong>Please complete the following steps:</strong></p>
+                <ol class="steps">
+                    <li>Log in to your escrow banking portal</li>
+                    <li>Locate transaction reference: <strong>{{referenceId}}</strong></li>
+                    <li>Transfer <strong>{{amount}}</strong> to the ranch owner's registered bank account</li>
+                    <li>Confirm successful transfer completion</li>
+                    <li>Update transaction status in your system</li>
+                </ol>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <p><strong>Need Assistance?</strong></p>
+                <p>Platform Support: support@yourplatform.com | (555) 123-4567</p>
+                <p>Please do not reply to this automated email.</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>This is an automated notification from {{year}} Investment Platform</p>
+            <p>All verification checks have been completed by our compliance team.</p>
+        </div>
+    </div>
+</body>
+</html>

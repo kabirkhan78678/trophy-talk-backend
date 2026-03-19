@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Escrow Payment Received - Admin Notification</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 0;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .email-container {
+      max-width: 650px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #ffffff;
+      text-align: center;
+      padding: 35px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(30deg);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Content */
+    .content {
+      padding: 40px 35px;
+    }
+
+    .greeting {
+      font-size: 18px;
+      color: #475569;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    .alert-banner {
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      border: 1px solid #3b82f6;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .alert-banner h2 {
+      color: #1e40af;
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .alert-banner p {
+      color: #374151;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    /* Payment Details */
+    .payment-details {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .payment-details h3 {
+      color: #059669;
+      margin: 0 0 20px 0;
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .payment-details h3::before {
+      content: '💰';
+      font-size: 24px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .detail-label {
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .detail-value {
+      font-size: 16px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .highlight-value {
+      color: #059669;
+      font-size: 18px;
+    }
+
+    /* Reference Section */
+    .reference-section {
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .reference-id {
+      background: #ffffff;
+      border: 2px dashed #f59e0b;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #92400e;
+      margin: 15px 0;
+      letter-spacing: 1px;
+    }
+
+    /* Action Section */
+    .action-section {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .action-section h3 {
+      color: #059669;
+      margin: 0 0 15px 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      margin: 15px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+    }
+
+    /* Timeline */
+    .timeline {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 25px 0;
+    }
+
+    .timeline h3 {
+      color: #475569;
+      margin: 0 0 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .timeline-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .timeline-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: #cbd5e1;
+    }
+
+    .timeline-step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: #10b981;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-weight: 600;
+    }
+
+    .step-text {
+      font-size: 12px;
+      color: #64748b;
+      max-width: 80px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+      padding: 25px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .footer-links {
+      margin: 15px 0;
+    }
+
+    .footer-links a {
+      color: #059669;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .email-container {
+        margin: 15px;
+        border-radius: 12px;
+      }
+
+      .content {
+        padding: 25px 20px;
+      }
+
+      .header {
+        padding: 25px 20px;
+      }
+
+      .header h1 {
+        font-size: 26px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .timeline-steps {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .timeline-steps::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <span class="header-icon">💰</span>
+      <h1>Escrow Payment Received</h1>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <p class="greeting">Hello Admin,</p>
+
+      <!-- Alert Banner -->
+      <div class="alert-banner">
+        <h2>Balance Payment Successfully Received!</h2>
+        <p>An investor has completed their wire transfer to the escrow account.</p>
+      </div>
+
+      <!-- Payment Details -->
+      <div class="payment-details">
+        <h3>Payment Information</h3>
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Investor Name</span>
+            <span class="detail-value">{{investorName}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Investor Email</span>
+            <span class="detail-value">{{investorEmail}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Ranch Property</span>
+            <span class="detail-value">{{ranchName}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Purchase ID</span>
+            <span class="detail-value">#{{purchaseId}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Amount Received</span>
+            <span class="detail-value highlight-value">${{amount}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Received Date</span>
+            <span class="detail-value">{{receivedDate}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reference Section -->
+      <div class="reference-section">
+        <h3>Escrow Reference ID</h3>
+        <div class="reference-id">{{referenceId}}</div>
+        <p>This reference ID was used by the investor for the wire transfer.</p>
+      </div>
+
+      <!-- Action Required -->
+      <div class="action-section">
+        <h3>Action Required</h3>
+        <p>Please review the purchase and mark it as complete to release funds to the ranch owner.</p>
+        <a href="{{adminDashboardUrl}}" class="cta-button">
+          👉 Review Purchase Now
+        </a>
+        <p style="font-size: 14px; color: #64748b; margin-top: 10px;">
+          This will take you directly to the purchase details page.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <h3>Next Steps</h3>
+        <div class="timeline-steps">
+          <div class="timeline-step">
+            <div class="step-number">1</div>
+            <div class="step-text">Payment Received</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-number">2</div>
+            <div class="step-text">Admin Review</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-number">3</div>
+            <div class="step-text">Release Funds</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-number">4</div>
+            <div class="step-text">Complete</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div style="background: #fefce8; border: 1px solid #fef08a; border-radius: 8px; padding: 15px; margin: 20px 0;">
+        <h4 style="color: #854d0e; margin: 0 0 10px 0;">📋 Quick Actions</h4>
+        <ul style="color: #854d0e; margin: 0; padding-left: 20px;">
+          <li>Verify investor documents are complete</li>
+          <li>Confirm ranch share availability</li>
+          <li>Check escrow transaction status</li>
+          <li>Notify ranch owner of pending payment</li>
+        </ul>
+      </div>
+
+      <p style="text-align: center; color: #64748b; margin-top: 30px; font-style: italic;">
+        This is an automated notification. The investor has been notified that their payment was received.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p><strong>Ranch Investment Platform</strong></p>
+      <p>Secure & Protected Transactions via Escrow.com</p>
+      <div class="footer-links">
+        <a href="{{adminDashboardUrl}}">Admin Dashboard</a>
+        <a href="{{supportUrl}}">Support</a>
+        <a href="{{transactionsUrl}}">View All Transactions</a>
+      </div>
+      <p>&copy; {{year}} Ranch Investments Inc. All rights reserved.</p>
+      <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">
+        This email was automatically generated by the system.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

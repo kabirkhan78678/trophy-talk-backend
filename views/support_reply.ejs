@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trophy Talk Support Reply</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-height: 80px;
+        }
+
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .attachment {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-left: 5px solid #007bff;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="<%= image_logo %>" alt="Trophy Talk Logo">
+        </div>
+
+        <h2>Support Reply from Trophy Talk</h2>
+
+        <div class="message">
+            <p>
+                <%= replyMessage %>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for reaching out to Trophy Talk support.<br>
+                If you have further questions, feel free to reply to this email.</p>
+        </div>
+    </div>
+</body>
+
+</html>

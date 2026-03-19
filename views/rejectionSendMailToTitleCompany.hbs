@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fund Refund Request</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .header .badge {
+            background: #ef4444;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .alert-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .alert-box h3 {
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+        
+        .rejection-reason {
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .rejection-reason h4 {
+            color: #ea580c;
+            margin-bottom: 10px;
+        }
+        
+        .reason-text {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #dc2626;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .transaction-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #6c757d;
+        }
+        
+        .detail-value {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .amount-highlight {
+            font-size: 28px;
+            font-weight: bold;
+            color: #dc2626;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 8px;
+        }
+        
+        .action-section {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .action-section h3 {
+            color: #d97706;
+            margin-bottom: 15px;
+        }
+        
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .steps li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .steps li:before {
+            content: "↶";
+            position: absolute;
+            left: 0;
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .refund-timeline {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .refund-timeline h4 {
+            color: #059669;
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .contact-info {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .urgency-banner {
+            background: #dc2626;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .note-box {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>FUND REFUND REQUEST</h1>
+            <p>Investment Verification Failed - Refund Required</p>
+            <div class="badge">ACTION REQUIRED</div>
+        </div>
+        
+        <!-- Urgency Banner -->
+        <div class="urgency-banner">
+            ⚡ PLEASE PROCESS REFUND WITHIN 24 HOURS
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <div class="alert-box">
+                <h3>❌ Investment Rejected</h3>
+                <p>Verification checks failed. Please process refund to investor.</p>
+            </div>
+            
+            <!-- Amount Highlight -->
+            <div class="amount-highlight">
+                {{amount}}
+            </div>
+            
+            <!-- Rejection Reason -->
+            <div class="rejection-reason">
+                <h4>📝 Rejection Reason:</h4>
+                <div class="reason-text">
+                    "{{rejectionReason}}"
+                </div>
+            </div>
+            
+            <!-- Transaction Details -->
+            <div class="transaction-details">
+                <h3 style="text-align: center; margin-bottom: 20px; color: #374151;">Transaction Details</h3>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Investor Name:</span>
+                    <span class="detail-value">{{investorName}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Investor Email:</span>
+                    <span class="detail-value">{{investorEmail}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Ranch Property:</span>
+                    <span class="detail-value">{{ranchName}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Purchase ID:</span>
+                    <span class="detail-value">#{{purchaseId}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Escrow Reference:</span>
+                    <span class="detail-value">{{referenceId}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Rejection Date:</span>
+                    <span class="detail-value">{{date}}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Rejection Time:</span>
+                    <span class="detail-value">{{time}}</span>
+                </div>
+            </div>
+            
+            <!-- Refund Timeline -->
+            <div class="refund-timeline">
+                <h4>⏰ Expected Refund Processing</h4>
+                <p><strong>3-5 business days</strong> for funds to appear in investor's account</p>
+            </div>
+            
+            <!-- Action Required Section -->
+            <div class="action-section">
+                <h3>📋 Required Action</h3>
+                <p><strong>Please complete the following refund steps:</strong></p>
+                <ol class="steps">
+                    <li>Log in to your escrow banking portal</li>
+                    <li>Locate transaction reference: <strong>{{referenceId}}</strong></li>
+                    <li>Process full refund of <strong>{{amount}}</strong> to investor's original payment method</li>
+                    <li>Ensure refund goes to original source (credit card/bank account)</li>
+                    <li>Update refund status in your system</li>
+                </ol>
+                
+                <div class="note-box">
+                    <strong>Note:</strong> Investor has been notified of the rejection and expected refund timeline.
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <p><strong>Need Assistance?</strong></p>
+                <p>Platform Support: support@yourplatform.com | (555) 123-4567</p>
+                <p>Please do not reply to this automated email.</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>This is an automated notification from {{year}} Investment Platform</p>
+            <p>All verification checks have been completed by our compliance team.</p>
+        </div>
+    </div>
+</body>
+</html>
